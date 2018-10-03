@@ -33,9 +33,9 @@ DEVICE = attiny85
 # see table on the bottom of this makefile
 # Note: the compiler used was AVR-GCC 4.7.2 , other versions may change the bootloader size
 BOOTLOADER_ADDRESS_HV = 1500
-BOOTLOADER_ADDRESS_LV = 14C0
+BOOTLOADER_ADDRESS_LV = 1480
 
-PROGRAMMER = -c usbtiny -B 1
+PROGRAMMER = -c usbasp -B 5
 # PROGRAMMER contains AVRDUDE options to address your programmer
 
 FUSEOPT_t85        = -U efuse:w:0xFE:m -U hfuse:w:0xD5:m
@@ -53,6 +53,7 @@ CC = avr-gcc
 DEFINES = 
 C_OPTIMIZATIONS = -ffunction-sections -fpack-struct -fshort-enums -fno-move-loop-invariants -fno-tree-scev-cprop -fno-inline-small-functions
 CFLAGS = -Wall -Os $(C_OPTIMIZATIONS) -I. -mmcu=$(DEVICE) -DF_CPU=16500000UL $(DEFINES)
+#CFLAGS = -Wall -Os $(C_OPTIMIZATIONS) -I. -mmcu=$(DEVICE) -DF_CPU=12000000UL $(DEFINES)
 LDFLAGS_BOOT = -Wl,--relax,--gc-sections
 LDFLAGS_JUMP = -Wl,--relax,--gc-sections
 
